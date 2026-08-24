@@ -28,7 +28,12 @@ app = FastAPI(
 with engine.connect() as conn:
     conn.execute(text("CREATE EXTENSION IF NOT EXISTS vector"))
 
-    conn.execute()
+    conn.execute(
+        text(
+            "ALTER TABLE conversations ADD COLUMN IF NOT EXISTS "
+            "model VARCHAR(100) NOT NULL DEFAULT 'gemini-3.6-flash'"
+        )
+    )
 
     conn.commit()
 
