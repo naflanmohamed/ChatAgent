@@ -1,6 +1,9 @@
+import os
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy import text
+
 from app.api import (
     auth_routes,
     chat_routes,
@@ -8,16 +11,19 @@ from app.api import (
     document_routes,
     approval_routes,
 )
+
 from app.db.database import Base, engine
 from app.db import redis_client
 from app.db import models
 from app.core.config import settings
+
 
 app = FastAPI(
     title="ChatBot Agentic Workspace",
     version="2.0.0",
     description="Gemini + LangGraph + RAG + Gmail + Calendar + MCP personal AI workspace.",
 )
+
 
 with engine.connect() as conn:
     conn.execute(text("CREATE EXTENSION IF NOT EXISTS vector"))
@@ -31,11 +37,24 @@ with engine.connect() as conn:
 
     conn.commit()
 
+
 Base.metadata.create_all(bind=engine)
+
+
+FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:5173")
+
+allowed_origins = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+]
+
+if FRONTEND_URL not in allowed_origins:
+    allowed_origins.append(FRONTEND_URL)
+
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
+    allow_origins=allowed_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -69,7 +88,7 @@ def health_check():
 
     return {
         "status": overall,
-        "service": "chatbot-backend",
+        "service": "chatagent-backend",
         "mcp_enabled": settings.mcp_enabled,
         "checks": checks,
     }
