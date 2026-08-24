@@ -1,0 +1,86 @@
+.login-screen {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(circle at 25% 15%, rgba(109, 93, 246, 0.10), transparent 45%),
+    radial-gradient(circle at 80% 75%, rgba(56, 189, 248, 0.10), transparent 45%),
+    var(--bg);
+  padding: 24px;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 400px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 44px 36px;
+  text-align: center;
+  box-shadow: var(--shadow-lg);
+}
+
+.login-badge-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 22px;
+}
+
+.login-title {
+  font-family: var(--font-display);
+  font-size: 25px;
+  font-weight: 700;
+  margin: 0 0 8px;
+  letter-spacing: -0.01em;
+}
+
+.login-subtitle {
+  font-size: 14px;
+  color: var(--text-dim);
+  margin: 0 0 32px;
+  line-height: 1.5;
+}
+
+.login-google-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.google-signin-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.google-signin-btn:hover:not(:disabled) {
+  border-color: var(--text-faint);
+  box-shadow: var(--shadow-sm);
+}
+
+.google-signin-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.login-error {
+  font-size: 13px;
+  color: var(--danger);
+  margin-top: 12px;
+}
+
+.login-footnote {
+  font-size: 11px;
+  color: var(--text-faint);
+  margin-top: 28px;
+}

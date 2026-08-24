@@ -1,0 +1,55 @@
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: chatbot_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+  api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    env_file:
+      - ./backend/.env
+    environment:
+      mcp_enabled: "true"
+      mcp_server_url: http://mcp:9000/mcp
+      database_url: postgresql+psycopg2://postgres:postgres@postgres:5432/chatbot_db
+      redis_url: redis://redis:6379/0
+    depends_on:
+      - postgres
+      - redis
+      - mcp
+    ports:
+      - "8000:8000"
+
+  mcp:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    env_file:
+      - ./backend/.env
+    command:
+      ["uvicorn", "app.mcp.http_app:app", "--host", "0.0.0.0", "--port", "9000"]
+    ports:
+      - "9000:9000"
+
+volumes:
+  postgres_data:
+  redis_data:

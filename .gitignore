@@ -1,0 +1,4 @@
+backend/.env
+frontend/.env
+__pycache__/
+.pytest_cache/
