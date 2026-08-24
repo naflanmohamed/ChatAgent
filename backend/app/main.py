@@ -42,7 +42,7 @@ with engine.connect() as conn:
             "ALTER TABLE conversations "
             "ADD COLUMN IF NOT EXISTS "
             "model VARCHAR(100) NOT NULL "
-            "DEFAULT 'gemini-3.6-flash'"
+            "DEFAULT 'gemini-2.5-flash'"
         )
     )
     conn.commit()
