@@ -25,20 +25,27 @@ app = FastAPI(
 )
 
 
+# Enable pgvector
 with engine.connect() as conn:
     conn.execute(text("CREATE EXTENSION IF NOT EXISTS vector"))
-
-    conn.execute(
-        text(
-            "ALTER TABLE conversations ADD COLUMN IF NOT EXISTS "
-            "model VARCHAR(100) NOT NULL DEFAULT 'gemini-3.6-flash'"
-        )
-    )
-
     conn.commit()
 
 
+# Create all SQLAlchemy tables
 Base.metadata.create_all(bind=engine)
+
+
+# Add new columns to existing tables
+with engine.connect() as conn:
+    conn.execute(
+        text(
+            "ALTER TABLE conversations "
+            "ADD COLUMN IF NOT EXISTS "
+            "model VARCHAR(100) NOT NULL "
+            "DEFAULT 'gemini-3.6-flash'"
+        )
+    )
+    conn.commit()
 
 
 FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:5173")
@@ -60,6 +67,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 app.include_router(auth_routes.router)
 app.include_router(chat_routes.router)
 app.include_router(conversation_routes.router)
@@ -69,12 +77,19 @@ app.include_router(approval_routes.router)
 
 @app.get("/health")
 def health_check():
-    checks = {"database": "unknown", "redis": "unknown"}
+    checks = {
+        "database": "unknown",
+        "redis": "unknown",
+    }
+
     overall = "ok"
+
     try:
         with engine.connect() as conn:
             conn.execute(text("SELECT 1"))
+
         checks["database"] = "ok"
+
     except Exception as exc:
         checks["database"] = f"error: {type(exc).__name__}"
         overall = "degraded"
@@ -82,6 +97,7 @@ def health_check():
     try:
         redis_client.redis_client.ping()
         checks["redis"] = "ok"
+
     except Exception as exc:
         checks["redis"] = f"error: {type(exc).__name__}"
         overall = "degraded"
