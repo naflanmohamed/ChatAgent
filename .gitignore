@@ -1,4 +1,33 @@
-backend/.env
-frontend/.env
+
+# Python
 __pycache__/
 .pytest_cache/
+*.py[cod]
+*.pyo
+
+# Environment files
+.env
+.env.*
+!.env.example
+backend/.env
+frontend/.env
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Logs
+*.log
+
+# Node
+node_modules/
+dist/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
