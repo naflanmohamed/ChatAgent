@@ -8,16 +8,20 @@
   padding: 24px;
   position: relative;
   overflow: hidden;
-  background: var(--bg);
+  background:
+    radial-gradient(circle at 50% 0%, var(--accent-soft), transparent 55%),
+    var(--bg);
 }
 
 .home-screen::before {
   content: "";
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(circle at 22% 20%, var(--accent-soft), transparent 45%),
-    radial-gradient(circle at 82% 75%, var(--accent-soft), transparent 45%);
+  background-image: radial-gradient(var(--border-strong) 1px, transparent 1px);
+  background-size: 26px 26px;
+  -webkit-mask-image: radial-gradient(circle at 50% 30%, black, transparent 68%);
+  mask-image: radial-gradient(circle at 50% 30%, black, transparent 68%);
+  opacity: 0.55;
   pointer-events: none;
 }
 
@@ -27,59 +31,60 @@
   align-items: center;
   gap: 8px;
   padding: 6px 14px;
-  margin-bottom: 22px;
-  border: 1px solid var(--border);
+  margin-bottom: 26px;
+  border: 1px solid var(--border-strong);
   border-radius: 999px;
-  background: var(--surface);
-  color: var(--text-faint);
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 0.12em;
+  background: var(--surface-raised);
+  color: var(--text-dim);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   box-shadow: var(--shadow-sm);
   animation: fadeSlideUp 0.5s ease both;
 }
 
 .home-kicker-dot {
-  width: 5px;
-  height: 5px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
   background: var(--success);
+  box-shadow: 0 0 0 3px var(--success-soft);
 }
 
 .home-badge-wrap {
   position: relative;
-  margin-bottom: 26px;
+  margin-bottom: 28px;
   animation: softPop 0.5s ease 0.05s both;
 }
 
 .home-badge-wrap .badge-mark {
-  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0 0 1px var(--border-strong), 0 20px 40px rgba(0, 0, 0, 0.35);
 }
 
 .home-title {
   position: relative;
   font-family: var(--font-display);
-  font-size: 42px;
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  line-height: 1.12;
-  margin: 0 0 16px;
-  max-width: 600px;
+  font-size: 52px;
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+  margin: 0 0 18px;
+  max-width: 640px;
   animation: fadeSlideUp 0.5s ease 0.1s both;
 }
 
 .home-title span {
-  color: var(--text-dim);
+  color: var(--accent);
 }
 
 .home-subtitle {
   position: relative;
-  font-size: 15.5px;
+  font-size: 16px;
   color: var(--text-dim);
-  max-width: 460px;
+  max-width: 480px;
   line-height: 1.65;
-  margin: 0 0 32px;
+  margin: 0 0 36px;
   animation: fadeSlideUp 0.5s ease 0.16s both;
 }
 
@@ -90,8 +95,8 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
-  max-width: 520px;
-  margin: 0 0 36px;
+  max-width: 540px;
+  margin: 0 0 38px;
   animation: fadeSlideUp 0.5s ease 0.2s both;
 }
 
@@ -99,13 +104,13 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 7px 12px;
+  padding: 7px 13px;
   border: 1px solid var(--border);
   border-radius: 999px;
   background: var(--surface);
   color: var(--text-dim);
-  font-size: 11px;
-  font-weight: 600;
+  font-size: 11.5px;
+  font-weight: 500;
 }
 
 .home-cta {
@@ -113,30 +118,24 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: var(--accent-solid);
-  color: var(--bg);
-  border: none;
-  border-radius: 999px;
-  padding: 14px 30px;
+  background: var(--accent);
+  color: var(--accent-text);
+  border: 1px solid var(--accent);
+  border-radius: 10px;
+  padding: 13px 26px;
   font-size: 14.5px;
-  font-weight: 700;
+  font-weight: 600;
   text-decoration: none;
-  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.16);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: 0 0 0 4px var(--accent-soft);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
   animation: fadeSlideUp 0.5s ease 0.26s both;
 }
 
-[data-theme="dark"] .home-cta {
-  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.5);
-}
-
 .home-cta:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
   transform: translateY(-2px);
-  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.22);
-}
-
-[data-theme="dark"] .home-cta:hover {
-  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 0 6px var(--accent-soft);
 }
 
 .home-cta svg {
@@ -149,13 +148,13 @@
 
 .home-footnote {
   position: relative;
-  margin-top: 30px;
+  margin-top: 28px;
   font-size: 10.5px;
   color: var(--text-faint);
   animation: fadeIn 0.6s ease 0.35s both;
 }
 
 @media (max-width: 560px) {
-  .home-title { font-size: 32px; }
+  .home-title { font-size: 36px; }
   .home-features { gap: 8px; }
 }

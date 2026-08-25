@@ -1,93 +1,96 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Sans:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap");
 
 /* =========================================================
-   LIGHT THEME
+   DESIGN TOKENS — dark-first (default), light theme override below
    ========================================================= */
 
 :root {
   /* Backgrounds */
-  --bg: #f7f7f7;
-  --surface: #ffffff;
-  --surface-2: #f1f1f1;
-  --surface-hover: #eaeaea;
+  --bg: #08080a;
+  --surface: #0e0e11;
+  --surface-2: #17171b;
+  --surface-hover: #1f1f24;
+  --surface-raised: #131316;
 
   /* Borders */
-  --border: #e2e2e2;
-  --border-strong: #d2d2d2;
+  --border: #212126;
+  --border-strong: #2f2f36;
 
   /* Text */
-  --text: #111111;
-  --text-dim: #5f5f5f;
-  --text-faint: #929292;
+  --text: #f2f2f4;
+  --text-dim: #a1a1aa;
+  --text-faint: #65656f;
 
-  /* Monochrome accent */
-  --accent-solid: #111111;
-  --accent-soft: rgba(0, 0, 0, 0.05);
-  --accent-soft-strong: rgba(0, 0, 0, 0.10);
+  /* Accent — restrained indigo, used sparingly for focus/active/primary */
+  --accent: #6366f1;
+  --accent-hover: #797bf2;
+  --accent-text: #ffffff;
+  --accent-soft: rgba(99, 102, 241, 0.14);
+  --accent-soft-strong: rgba(99, 102, 241, 0.24);
+  --accent-ring: rgba(99, 102, 241, 0.35);
 
-  /* Kept for existing components */
-  --accent-gradient: #111111;
+  /* Monochrome mark (kept for components still referencing it) */
+  --accent-solid: #f2f2f4;
+  --accent-gradient: #f2f2f4;
 
   /* Status */
-  --danger: #555555;
-  --danger-soft: rgba(0, 0, 0, 0.06);
-
-  --success: #333333;
+  --success: #34d399;
+  --success-soft: rgba(52, 211, 153, 0.14);
+  --danger: #f36270;
+  --danger-soft: rgba(243, 98, 112, 0.14);
 
   /* Typography */
-  --font-display: "Plus Jakarta Sans", sans-serif;
-  --font-body: "DM Sans", sans-serif;
+  --font-display: "Instrument Sans", "Inter", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
 
-  /* Shadows */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
-  --shadow-md: 0 6px 20px rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 18px 45px rgba(0, 0, 0, 0.09);
+  /* Shadows — dark UIs lean on depth via lighter surfaces + soft black falloff */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 24px 60px rgba(0, 0, 0, 0.55);
 
   /* Radius */
-  --radius-sm: 8px;
-  --radius-md: 11px;
-  --radius-lg: 15px;
+  --radius-sm: 7px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+
+  color-scheme: dark;
 }
 
+[data-theme="light"] {
+  --bg: #fafafa;
+  --surface: #ffffff;
+  --surface-2: #f2f2f4;
+  --surface-hover: #e9e9ec;
+  --surface-raised: #ffffff;
 
-/* =========================================================
-   DARK THEME
-   ========================================================= */
+  --border: #e6e6ea;
+  --border-strong: #d4d4da;
 
-[data-theme="dark"] {
-  /* Backgrounds */
-  --bg: #0b0b0b;
-  --surface: #111111;
-  --surface-2: #181818;
-  --surface-hover: #202020;
+  --text: #131316;
+  --text-dim: #63636c;
+  --text-faint: #97979f;
 
-  /* Borders */
-  --border: #292929;
-  --border-strong: #373737;
+  --accent: #5457e5;
+  --accent-hover: #4143d6;
+  --accent-text: #ffffff;
+  --accent-soft: rgba(84, 87, 229, 0.08);
+  --accent-soft-strong: rgba(84, 87, 229, 0.14);
+  --accent-ring: rgba(84, 87, 229, 0.3);
 
-  /* Text */
-  --text: #f5f5f5;
-  --text-dim: #a0a0a0;
-  --text-faint: #6f6f6f;
+  --accent-solid: #131316;
+  --accent-gradient: #131316;
 
-  /* Monochrome accent */
-  --accent-solid: #f5f5f5;
-  --accent-soft: rgba(255, 255, 255, 0.06);
-  --accent-soft-strong: rgba(255, 255, 255, 0.11);
+  --success: #0d9e6f;
+  --success-soft: rgba(13, 158, 111, 0.1);
+  --danger: #d8394c;
+  --danger-soft: rgba(216, 57, 76, 0.08);
 
-  /* Kept for existing components */
-  --accent-gradient: #f5f5f5;
+  --shadow-sm: 0 1px 2px rgba(20, 20, 25, 0.04);
+  --shadow-md: 0 8px 24px rgba(20, 20, 25, 0.06);
+  --shadow-lg: 0 24px 60px rgba(20, 20, 25, 0.1);
 
-  /* Status */
-  --danger: #c7c7c7;
-  --danger-soft: rgba(255, 255, 255, 0.07);
-
-  --success: #d5d5d5;
-
-  /* Shadows */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
-  --shadow-md: 0 8px 25px rgba(0, 0, 0, 0.35);
-  --shadow-lg: 0 20px 55px rgba(0, 0, 0, 0.50);
+  color-scheme: light;
 }
 
 
@@ -111,11 +114,12 @@ body {
   color: var(--text);
 
   font-family: var(--font-body);
+  font-size: 14px;
+  letter-spacing: -0.006em;
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-  font-feature-settings: "ss01" 1, "cv01" 1;
 
   transition:
     background 0.2s ease,
@@ -124,7 +128,8 @@ body {
 
 button,
 input,
-textarea {
+textarea,
+select {
   font-family: inherit;
 }
 
@@ -143,8 +148,8 @@ a {
    ========================================================= */
 
 ::selection {
-  background: var(--text);
-  color: var(--bg);
+  background: var(--accent-soft-strong);
+  color: var(--text);
 }
 
 
@@ -155,9 +160,11 @@ a {
 button:focus-visible,
 input:focus-visible,
 textarea:focus-visible,
+select:focus-visible,
 a:focus-visible {
-  outline: 2px solid var(--text);
+  outline: 2px solid var(--accent);
   outline-offset: 2px;
+  border-radius: 4px;
 }
 
 
@@ -172,10 +179,10 @@ a:focus-visible {
   align-items: center;
   justify-content: center;
 
-  background: var(--accent-solid);
+  background: var(--text);
   color: var(--bg);
 
-  border-radius: 9px;
+  border-radius: 8px;
 
   box-shadow: none;
 }
@@ -186,15 +193,15 @@ a:focus-visible {
    ========================================================= */
 
 .theme-toggle {
-  width: 36px;
-  height: 36px;
+  width: 34px;
+  height: 34px;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
   border: 1px solid var(--border);
-  border-radius: 9px;
+  border-radius: var(--radius-sm);
 
   background: var(--surface);
   color: var(--text-dim);
@@ -241,23 +248,7 @@ a:focus-visible {
 
 
 /* =========================================================
-   REDUCED MOTION
-   ========================================================= */
-
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-}
-
-
-/* =========================================================
-   SHARED MOTION UTILITIES
+   MOTION UTILITIES
    ========================================================= */
 
 @keyframes fadeSlideUp {
@@ -271,6 +262,17 @@ a:focus-visible {
 }
 
 @keyframes softPop {
-  from { opacity: 0; transform: scale(0.97); }
+  from { opacity: 0; transform: scale(0.96); }
   to { opacity: 1; transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

@@ -5,7 +5,7 @@ const STORAGE_KEY = "theme";
 
 function getInitialTheme() {
   const stored = localStorage.getItem(STORAGE_KEY);
-  return stored === "dark" ? "dark" : "light";
+  return stored === "light" ? "light" : "dark";
 }
 
 export default function ThemeToggle({ className = "" }) {
