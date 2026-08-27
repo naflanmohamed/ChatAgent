@@ -92,10 +92,74 @@
 .chat-context strong { font-size:12.5px; font-weight:600; }
 .chat-context span { max-width:460px; font-size:10.5px; color:var(--text-faint); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
 
-.model-control { display:flex; align-items:center; gap:8px; padding:6px 8px 6px 10px; border:1px solid var(--border); border-radius:var(--radius-sm); background:var(--surface); transition:border-color .15s ease; }
-.model-control:focus-within { border-color:var(--accent); }
-.model-control-label { display:flex; align-items:center; gap:4px; font-size:9.5px; color:var(--text-faint); }
-.model-control select { border:0; outline:0; background:transparent; color:var(--text); font-size:10.5px; font-weight:600; max-width:210px; }
+[data-theme="dark"] {
+  --bg: #0f0f0f;
+  --surface: #171717;
+  --surface-2: #1f1f1f;
+  --surface-raised: #242424;
+  --surface-hover: #2a2a2a;
+
+  --text: #f5f5f5;
+  --text-dim: #b8b8b8;
+  --text-faint: #858585;
+
+  --border: #2d2d2d;
+  --border-strong: #3a3a3a;
+
+  --accent: #f5f5f5;
+  --accent-hover: #ffffff;
+  --accent-text: #111111;
+
+  --accent-soft: rgba(255, 255, 255, 0.08);
+  --accent-soft-strong: rgba(255, 255, 255, 0.18);
+
+  --success: #4ade80;
+  --success-soft: rgba(74, 222, 128, 0.12);
+
+  --danger: #f87171;
+
+  --accent-ring: rgba(255, 255, 255, 0.15);
+}
+
+.model-control {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--text);
+  transition: border-color .15s ease, background .15s ease;
+}
+
+.model-control:focus-within {
+  border-color: var(--border-strong);
+}
+
+.model-control-label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 9.5px;
+  color: var(--text-faint);
+}
+
+.model-control select {
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--text);
+  font-size: 10.5px;
+  font-weight: 600;
+  max-width: 210px;
+  cursor: pointer;
+}
+
+.model-control select option {
+  background: var(--surface);
+  color: var(--text);
+}
 
 .chat-log { flex:1; min-height:0; overflow:auto; padding:22px 4px 24px; display:flex; flex-direction:column; gap:22px; }
 
